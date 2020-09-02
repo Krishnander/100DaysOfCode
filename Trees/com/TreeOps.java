@@ -14,6 +14,7 @@ public class TreeOps {
 		left=right=root=null;
 	}
 	
+	//Pass the node where addition of new element has to be done
 	public void add(int i,Node n) {
 		if (i>n.data) {
 			if (n.right==null) {
@@ -35,6 +36,36 @@ public class TreeOps {
 			root=new Node();
 		}
 		add(r, root);
+	}
+	
+	//Pass the Grandparent Node where rotation has to be done
+	public Node leftRotate(Node node) {
+		Node temp=node.right;
+		node.right=temp.left;
+		temp.left=node;
+		return temp;
+	}
+	
+	//Pass the Grandparent Node where rotation has to be done
+	public Node rightRotate(Node node) {
+		Node temp=node.left;
+		node.left=temp.right;
+		temp.right=node;
+		return temp;
+	}
+	
+	//Pass the Grandparent Node where rotation has to be done
+	public Node rightleftRotate(Node node) {
+		node.right=rightRotate(node.right);
+		return leftRotate(node);
+	}
+	
+	//Pass the Grandparent Node where rotation has to be done
+	public Node leftrightRotate(Node node) {
+		node.left=leftRotate(node.left);
+		return rightRotate(node);
+	}
+	
 	}
 
 }
